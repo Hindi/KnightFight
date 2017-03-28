@@ -46,15 +46,6 @@ void ABaseCharacter::BeginPlay()
 			secondaryWeapon->AttachRootComponentTo(GetMesh(), "SecondaryWeaponSocket"	, EAttachLocation::SnapToTarget, true);
 		}
 	}
-	/*if (secondaryWeaponReference != FString("") && secondaryWeaponSocketName != FString(""))
-	{
-		uClassSecondaryWeapon = StaticLoadClass(UObject::StaticClass(), nullptr, *secondaryWeaponReference);
-		if (uClassSecondaryWeapon)
-		{
-			secondaryWeapon = GetWorld()->SpawnActor<AWeapon>(uClassSecondaryWeapon, FVector(), FRotator());
-			secondaryWeapon->AttachRootComponentTo(GetMesh(), *secondaryWeaponSocketName, EAttachLocation::SnapToTarget, true);
-		}
-	}*/
 }
 
 // Called every frame

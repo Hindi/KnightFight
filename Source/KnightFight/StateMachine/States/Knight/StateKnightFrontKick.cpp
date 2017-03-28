@@ -26,7 +26,7 @@ void UStateKnightFrontKick::update(float DeltaTime)
 		stateMachine->changeState(TEXT("Idle"));
 }
 
-void UStateKnightFrontKick::pressLightHit()
+void UStateKnightFrontKick::useLightHit()
 {
 	shouldContinueCombo = true;
 }

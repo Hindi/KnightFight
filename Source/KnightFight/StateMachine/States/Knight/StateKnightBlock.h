@@ -14,8 +14,8 @@ class KNIGHTFIGHT_API UStateKnightBlock : public UStateKnight
 	GENERATED_BODY()
 
 public:
-	void pressLightHit();
-	void pressFrontKick();
+	void useLightHit();
+	void useFrontKick();
 	void releaseBlock();
 
 	void leave() override;

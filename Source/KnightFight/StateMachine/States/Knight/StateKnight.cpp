@@ -16,17 +16,17 @@ void UStateKnight::initState(UStateMachineComponent* machine, AKnightFightCharac
 	weapon = myWeapon;
 }
 
-void UStateKnight::pressLightHit()
+void UStateKnight::useLightHit()
 {
 	//Do nothing by default
 }
 
-void UStateKnight::pressFrontKick()
+void UStateKnight::useFrontKick()
 {
 	//Do nothing by default
 }
 
-void UStateKnight::pressBlock()
+void UStateKnight::useBlock()
 {
 	//Do nothing by default
 }

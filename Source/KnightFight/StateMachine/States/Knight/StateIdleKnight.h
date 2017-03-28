@@ -16,9 +16,9 @@ class KNIGHTFIGHT_API UStateIdleKnight : public UStateKnight
 	
 	
 public:
-	void pressLightHit();
-	void pressFrontKick();
-	void pressBlock();
+	void useLightHit();
+	void useFrontKick();
+	void useBlock();
 
 	void leave() override;
 	void enter() override;

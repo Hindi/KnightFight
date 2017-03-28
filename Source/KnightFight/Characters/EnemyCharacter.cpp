@@ -17,24 +17,12 @@ void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//We need animInstance for the states
-	if (animationInstance)
-	{
-
-	}
 }
 
 // Called every frame
 void AEnemyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-}
-
-// Called to bind functionality to input
-void AEnemyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
 

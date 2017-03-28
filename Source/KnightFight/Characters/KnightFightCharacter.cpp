@@ -29,22 +29,6 @@ AKnightFightCharacter::AKnightFightCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
-
-	// Create a camera boom (pulls in towards the player if there is a collision)
-	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = 300.0f; // The camera follows at this distance behind the character	
-	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
-
-	// Create a follow camera
-	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
-	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
-	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
-
-
-	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
-	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
-
 }
 
 void AKnightFightCharacter::BeginPlay()
@@ -54,7 +38,6 @@ void AKnightFightCharacter::BeginPlay()
 	//We need animInstance for the states
 	if (animationInstance)
 	{
-
 		UStateIdleKnight* idleState = NewObject<UStateIdleKnight>(stateMachine, UStateIdleKnight::StaticClass(), TEXT("IdleState"));
 		UStateKnightCombo1* combo1State = NewObject<UStateKnightCombo1>(stateMachine, UStateKnightCombo1::StaticClass(), TEXT("Combo1State"));
 		UStateKnightCombo2* combo2State = NewObject<UStateKnightCombo2>(stateMachine, UStateKnightCombo2::StaticClass(), TEXT("Combo2State"));
@@ -77,53 +60,19 @@ void AKnightFightCharacter::BeginPlay()
 	}
 }
 
-//////////////////////////////////////////////////////////////////////////
-// Input
-
-void AKnightFightCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
-{
-	// Set up gameplay key bindings
-	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-
-	PlayerInputComponent->BindAction("LightHit", IE_Pressed, this, &AKnightFightCharacter::LightHit);
-	PlayerInputComponent->BindAction("FrontKick", IE_Pressed, this, &AKnightFightCharacter::FrontKick);
-	PlayerInputComponent->BindAction("Block", IE_Pressed, this, &AKnightFightCharacter::StartBlock);
-	PlayerInputComponent->BindAction("Block", IE_Released, this, &AKnightFightCharacter::EndBlock);
-
-	PlayerInputComponent->BindAxis("MoveForward", this, &AKnightFightCharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &AKnightFightCharacter::MoveRight);
-
-	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
-	// "turn" handles devices that provide an absolute delta, such as a mouse.
-	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
-	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("TurnRate", this, &AKnightFightCharacter::TurnAtRate);
-	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("LookUpRate", this, &AKnightFightCharacter::LookUpAtRate);
-
-	// handle touch devices
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &AKnightFightCharacter::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &AKnightFightCharacter::TouchStopped);
-
-	// VR headset functionality
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AKnightFightCharacter::OnResetVR);
-}
-
 void AKnightFightCharacter::LightHit()
 {
-	Cast<UStateKnight>(stateMachine->getCurrentState())->pressLightHit();
+	Cast<UStateKnight>(stateMachine->getCurrentState())->useLightHit();
 }
 
 void AKnightFightCharacter::FrontKick()
 {
-	Cast<UStateKnight>(stateMachine->getCurrentState())->pressFrontKick();
+	Cast<UStateKnight>(stateMachine->getCurrentState())->useFrontKick();
 }
 
 void AKnightFightCharacter::StartBlock()
 {
-	Cast<UStateKnight>(stateMachine->getCurrentState())->pressBlock();
+	Cast<UStateKnight>(stateMachine->getCurrentState())->useBlock();
 }
 
 void AKnightFightCharacter::EndBlock()
@@ -170,11 +119,14 @@ void AKnightFightCharacter::LookUpAtRate(float Rate)
 
 void AKnightFightCharacter::Tick(float DeltaTime)
 {
-	FRotator NewRot = FRotationMatrix::MakeFromX(lockTarget->GetActorLocation() - this->GetActorLocation()).Rotator();
-	NewRot.Pitch = 0;
-	lookAtDirection = NewRot.Vector();
+	if (lockTarget)
+	{
+		FRotator NewRot = FRotationMatrix::MakeFromX(lockTarget->GetActorLocation() - this->GetActorLocation()).Rotator();
+		NewRot.Pitch = 0;
+		lookAtDirection = NewRot.Vector();
 
-	SetActorRotation(NewRot);
+		SetActorRotation(NewRot);
+	}
 	doMoveRight();
 }
 

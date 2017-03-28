@@ -33,12 +33,12 @@ void UStateKnightBlock::update(float DeltaTime)
 	}
 }
 
-void UStateKnightBlock::pressLightHit()
+void UStateKnightBlock::useLightHit()
 {
 	stateMachine->changeState(TEXT("Combo1"));
 }
 
-void UStateKnightBlock::pressFrontKick()
+void UStateKnightBlock::useFrontKick()
 {
 	stateMachine->changeState(TEXT("FrontKick"));
 }

@@ -22,17 +22,17 @@ void UStateIdleKnight::update(float DeltaTime)
 
 }
 
-void UStateIdleKnight::pressLightHit()
+void UStateIdleKnight::useLightHit()
 {
 	stateMachine->changeState(TEXT("Combo1"));
 }
 
-void UStateIdleKnight::pressFrontKick()
+void UStateIdleKnight::useFrontKick()
 {
 	stateMachine->changeState(TEXT("FrontKick"));
 }
 
-void UStateIdleKnight::pressBlock()
+void UStateIdleKnight::useBlock()
 {
 	stateMachine->changeState(TEXT("Block"));
 }

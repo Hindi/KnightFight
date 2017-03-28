@@ -4,6 +4,8 @@
 
 #include "GameFramework/Character.h"
 #include "Equipements/Weapons/Weapon.h"
+#include "StateMachine/StateMachineKnight.h"
+#include "Animations/KnightAnimInstance.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()

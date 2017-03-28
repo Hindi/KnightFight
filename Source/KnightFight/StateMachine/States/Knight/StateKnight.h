@@ -22,9 +22,9 @@ public:
 	void initState(UStateMachineComponent* machine, AKnightFightCharacter* myCharacter, 
 		UKnightAnimInstance* myAnimInstance, UAnimMontage* myAnimMontage = nullptr,
 		AWeapon* myWeapon = nullptr);
-	virtual void pressLightHit();
-	virtual void pressFrontKick();
-	virtual void pressBlock();
+	virtual void useLightHit();
+	virtual void useFrontKick();
+	virtual void useBlock();
 	virtual void releaseBlock();
 	
 protected:

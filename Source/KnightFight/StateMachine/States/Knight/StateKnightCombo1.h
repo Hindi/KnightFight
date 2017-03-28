@@ -13,7 +13,7 @@ class KNIGHTFIGHT_API UStateKnightCombo1 : public UStateKnight
 {
 	GENERATED_BODY()
 public:
-	void pressLightHit();
+	void useLightHit();
 
 	void leave() override;
 	void enter() override;

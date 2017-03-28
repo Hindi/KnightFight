@@ -66,6 +66,7 @@ void UStateMachineComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	currentState->update(DeltaTime);
+	if(currentState)
+		currentState->update(DeltaTime);
 }
 

@@ -3,11 +3,11 @@
 #pragma once
 
 #include "GameFramework/Character.h"
-#include "BaseCharacter.h"
+#include "Characters/KnightFightCharacter.h"
 #include "EnemyCharacter.generated.h"
 
 UCLASS()
-class KNIGHTFIGHT_API AEnemyCharacter : public ABaseCharacter
+class KNIGHTFIGHT_API AEnemyCharacter : public AKnightFightCharacter
 {
 	GENERATED_BODY()
 
@@ -22,10 +22,5 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	
 	
 };

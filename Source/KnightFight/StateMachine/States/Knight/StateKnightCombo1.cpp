@@ -36,7 +36,7 @@ void UStateKnightCombo1::update(float DeltaTime)
 	}
 }
 
-void UStateKnightCombo1::pressLightHit()
+void UStateKnightCombo1::useLightHit()
 {
 	shouldContinueCombo = true;
 }
