@@ -2,7 +2,7 @@
 	"TargetName" : "KnightFightEditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "8b9e6d66-cd21-4339-85b3-8806a1b19676",
+	"BuildId" : "247cd84f-5511-4cfa-9b3f-61643136dd0b",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
@@ -17,15 +17,15 @@
 	"BuildProducts" :
 	[
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-KnightFight-8745.dll",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-KnightFight.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-KnightFight-8745.pdb",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-KnightFight.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-KnightFight-8745.lib",
+			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-KnightFight.lib",
 			"Type" : "ImportLibrary"
 		},
 		{

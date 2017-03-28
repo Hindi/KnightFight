@@ -2,7 +2,7 @@
 
 #include "KnightFight.h"
 #include "KnightFightGameMode.h"
-#include "KnightFightCharacter.h"
+#include "Characters/KnightFightCharacter.h"
 
 AKnightFightGameMode::AKnightFightGameMode()
 {
