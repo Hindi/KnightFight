@@ -28,7 +28,6 @@ public:
 	void playMontage(UAnimMontage* montage, FName sectionName = NAME_None);
 	void stopMontage(UAnimMontage* montage);
 
-protected:
 
 	/** Resets HMD orientation in VR. */
 	void OnResetVR();
